@@ -1,0 +1,27 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.nav-buttons {
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: bold;
+}
+
+.nav-button-active {
+  color: black;
+}
+
+#root > div > div:nth-child(1) > header > div > a:nth-child(1) {
+  position: absolute;
+  left: 0;
+  margin-left: 20px;
+}
+
+.rarr {
+  margin: 0 5px 5px;
+}
