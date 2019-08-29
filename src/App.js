@@ -7,15 +7,16 @@ import Home from "./Components/Home.js";
 import Register from "./Components/Register.js";
 
 
-function App() {
-  return (
-    <div className="App">
-      <NavBar />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/" component={Home} />
-    </div>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+        <Route exact path="/login" render={props => <Login {...props} />} />
+        <Route exact path="/register" render={props => <Register {...props} />} />
+        <Route exact path="/" render={props => <Home {...props} />} />
+      </div>
+    );
+  }
 }
 
-export default App;

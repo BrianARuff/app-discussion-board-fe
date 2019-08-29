@@ -14,8 +14,6 @@ import {
   EXP
 } from "../actions"; // import constants here...
 
-console.log(EXP);
-
 export default combineReducers({
   testReducer
 })
