@@ -1,8 +1,22 @@
 import React from "react";
-import { InputLabel, FormHelperText, Input, FormControl } from "@material-ui/core";
+import { InputLabel, FormHelperText, Input, FormControl, TextField } from "@material-ui/core";
 import RemoveRedEye from "@material-ui/icons/RemoveRedEye";
 import "../styles/register.css";
 export default class Register extends React.Component {
+  state = {
+    name: "",
+    email: "",
+    password: "",
+    validatePSW: "",
+    date_of_birth: "",
+    description: "",
+    image: ""
+  }
+
+  handleInputChange = (e) => {
+    this.setState({[e.target.name]: e.target.value});
+  }
+
   render() {
     return (
       <div className="register-form-container">
@@ -12,7 +26,7 @@ export default class Register extends React.Component {
             <InputLabel>
               Username
               </InputLabel>
-            <Input type="text" />
+            <Input name="name" type="text" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a username that you are comfortable using and can remember</FormHelperText>
           </FormControl>
 
@@ -20,7 +34,7 @@ export default class Register extends React.Component {
             <InputLabel>
               Email
             </InputLabel>
-            <Input type="email" />
+            <Input name="email" type="email" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a valid email address that you can keep up with</FormHelperText>
           </FormControl>
 
@@ -28,7 +42,7 @@ export default class Register extends React.Component {
             <InputLabel>
               Password
             </InputLabel>
-            <Input type="password" />
+            <Input name="password" type="password" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a strong password that you can remember</FormHelperText>
           </FormControl>
 
@@ -36,13 +50,13 @@ export default class Register extends React.Component {
             <InputLabel>
               Please enter your password again
             </InputLabel>
-            <Input type="password" />
+            <Input name="validatePSW" type="password" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a strong password that you can remember</FormHelperText>
           </FormControl>
 
           <FormControl fullWidth >
             <InputLabel /> {/* DOB */}
-            <Input type="date" />
+            <Input name="date_of_birth" type="date" onChange={this.handleInputChange}/>
             <FormHelperText>Please enter a valid email address that you can keep up with</FormHelperText>
           </FormControl>
 
@@ -50,17 +64,16 @@ export default class Register extends React.Component {
             <InputLabel>
               Description
             </InputLabel>
-            <Input type="text" />
-            <FormHelperText>Please tell us about yourself, if you want.</FormHelperText>
+            <Input name="description" type="text" onChange={this.handleInputChange} />
+            <FormHelperText>Please give us a short description about yourself, if you want.</FormHelperText>
           </FormControl>
 
           <FormControl fullWidth>
             <InputLabel>
             </InputLabel>
-            <Input type="file" />
+            <Input name="image" type="file" onChange={this.handleInputChange} />
             <FormHelperText>Image uploader under construction</FormHelperText>
           </FormControl>
-          
         </div>
       </div>
     )
