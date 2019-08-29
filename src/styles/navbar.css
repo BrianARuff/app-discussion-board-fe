@@ -13,7 +13,7 @@
 }
 
 .nav-button-active {
-  color: black;
+  text-decoration: underline;
 }
 
 /* LOGO */

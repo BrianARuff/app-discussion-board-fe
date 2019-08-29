@@ -1,20 +1,44 @@
 import React from "react";
-import { InputLabel, FormHelperText, Input, FormControl, TextField } from "@material-ui/core";
-import RemoveRedEye from "@material-ui/icons/RemoveRedEye";
+import { Link } from "react-router-dom";
+import { InputLabel, FormHelperText, Input, FormControl, Button } from "@material-ui/core";
+import { StyledDropZone } from 'react-drop-zone'
+import 'react-drop-zone/dist/styles.css';
+import axios from "axios";
+import Cookie from "js-cookie";
+
 import "../styles/register.css";
 export default class Register extends React.Component {
   state = {
     name: "",
     email: "",
     password: "",
-    validatePSW: "",
     date_of_birth: "",
     description: "",
-    image: ""
+    image: "",
+    role: "member",
+    status: "Register"
   }
 
   handleInputChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  registerUser = () => {
+    this.setState({status: "registering"});
+    axios.post("https://suicide-watch-backend.herokuapp.com/auth/register", this.state)
+      .then(res => {
+        localStorage.setItem("username", res.data.user.name);
+        Cookie.set("token", res.data.token, {
+          expires: 7,
+          path: "/"
+        });
+        this.setState({status: "Registered"});
+        this.props.history.push('/');
+      })
+      .catch(err => {
+        console.error(this.setState({status: "registering"}));
+        this.setState({status: "Error registering account... Try again."});
+      });
   }
 
   render() {
@@ -46,17 +70,9 @@ export default class Register extends React.Component {
             <FormHelperText>Please enter a strong password that you can remember</FormHelperText>
           </FormControl>
 
-          <FormControl fullWidth required>
-            <InputLabel>
-              Please enter your password again
-            </InputLabel>
-            <Input name="validatePSW" type="password" onChange={this.handleInputChange} />
-            <FormHelperText>Please enter a strong password that you can remember</FormHelperText>
-          </FormControl>
-
           <FormControl fullWidth >
-            <InputLabel /> {/* DOB */}
-            <Input name="date_of_birth" type="date" onChange={this.handleInputChange}/>
+            <InputLabel />
+            <Input name="date_of_birth" type="date" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a valid email address that you can keep up with</FormHelperText>
           </FormControl>
 
@@ -68,11 +84,27 @@ export default class Register extends React.Component {
             <FormHelperText>Please give us a short description about yourself, if you want.</FormHelperText>
           </FormControl>
 
+          <br />
+          <StyledDropZone label="Select or Drop your image here" onDrop={(file, text) => {
+            const reader = new FileReader();
+            reader.onload = upload => {
+              this.setState({ image: upload.srcElement.result });
+            };
+            reader.readAsDataURL(file);
+          }}>
+          </StyledDropZone>
+
+          <br />
           <FormControl fullWidth>
-            <InputLabel>
-            </InputLabel>
-            <Input name="image" type="file" onChange={this.handleInputChange} />
-            <FormHelperText>Image uploader under construction</FormHelperText>
+            <Button
+              onClick={this.registerUser}
+              fullWidth
+              color="secondary"
+              variant="contained"
+            >
+              {this.state.status}
+            </Button>
+            <FormHelperText>Already registered? Please go <Link to="/login">Login</Link> to login.</FormHelperText>
           </FormControl>
         </div>
       </div>

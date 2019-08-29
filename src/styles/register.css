@@ -12,3 +12,8 @@
   align-items: center;
   flex-direction: column;
 }
+
+/* Drop Zone */
+#root > div > div.register-form-container > div > div.DropZone {
+  width: 80%;
+}

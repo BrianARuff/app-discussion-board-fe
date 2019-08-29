@@ -1,0 +1,8 @@
+.home-flex-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100vh;
+  margin: 1.25rem;
+}

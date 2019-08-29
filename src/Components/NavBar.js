@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // custom styles
 import "../styles/navbar.css";
@@ -10,19 +10,93 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 export default class NavBar extends React.Component {
+  state = {
+    isValid: false
+  }
+
+  async componentWillMount() {
+    const payload = await window.cookieStore.get("token") || "";
+
+    if (payload.name) {
+      this.setState({ isValid: true });
+    } else {
+      this.setState({ isValid: false });
+    }
+  }
+
   render() {
     return (
       <div>
         <AppBar position="static">
           <Toolbar className="navigation">
-            <NavLink
-              className="nav-buttons" exact to="/"><Button color="inherit">SW</Button></NavLink>
 
-            <NavLink activeClassName="nav-button-active" className="nav-buttons" exact to="/login"><Button onClick={this.handleUpdateUrl} color="inherit">Login</Button></NavLink>
+            {
+              this.state.isValid ?
+                (
+                  <React.Fragment>
 
-            <NavLink activeClassName="nav-button-active" className="nav-buttons" exact to="/register"><Button onClick={this.handleUpdateUrl} color="inherit">Register</Button></NavLink>
+                    <NavLink
+                      className="nav-buttons"
+                      exact
+                      to="/"><Button color="inherit">SW</Button></NavLink>
 
-            <NavLink activeClassName="nav-button-active" className="nav-buttons" exact to="/"><Button onClick={this.handleUpdateUrl} color="inherit">Home</Button></NavLink>
+                    <NavLink 
+                      activeClassName="nav-button-active"
+                      className="nav-buttons"
+                      exact to="/">
+                      <Button
+                        onClick={this.handleUpdateUrl}
+                        color="inherit">
+                        Home
+                      </Button>
+                    </NavLink>
+
+                    <NavLink 
+                      activeClassName="nav-button-active"
+                      className="nav-buttons"
+                      exact to="/logout">
+                      <Button
+                        onClick=""
+                        color="inherit">
+                        Logout
+                      </Button>
+                    </NavLink>
+
+                  </React.Fragment>
+                ) :
+                (
+                  <React.Fragment>
+                    <NavLink
+                      className="nav-buttons" 
+                      exact to="/">
+                        <Button 
+                          color="inherit">
+                            SW
+                        </Button>
+                      </NavLink>
+
+                    <NavLink 
+                      activeClassName="nav-button-active" className="nav-buttons" 
+                      exact 
+                      to="/login">
+                        <Button 
+                          onClick={this.handleUpdateUrl} color="inherit">
+                            Login
+                        </Button>
+                    </NavLink>
+
+                    <NavLink 
+                      activeClassName="nav-button-active" className="nav-buttons" 
+                      exact 
+                      to="/register">
+                        <Button 
+                          onClick={this.handleUpdateUrl} color="inherit">
+                            Register
+                        </Button>
+                    </NavLink>
+                  </React.Fragment>
+                )
+            }
           </Toolbar>
         </AppBar>
       </div>
