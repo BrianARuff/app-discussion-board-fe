@@ -1,8 +1,14 @@
 .home-flex-box {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   height: 100vh;
   margin: 1.25rem;
+}
+
+.homeImage {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
 }

@@ -1,16 +1,19 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Register from "./Register";
+import axios from "axios";
 import "../styles/home.css";
 
 export default class Home extends React.Component {
   state = {
     status: "Loading",
     user: {},
-    isValid: false
+    isValid: false,
+    image: ""
   }
-  async componentWillMount() {
-    const payload = await window.cookieStore.get("token") || "";
+
+  static async componentDidMount() {
+    const payload = window.cookieStore.get("token") || "";
 
     if (payload.name) {
       const bearerToken = payload.value.split(".")[1];
@@ -21,6 +24,12 @@ export default class Home extends React.Component {
       this.setState({ isValid: false, status: "", user: {} });
       console.log('err', this.state);
     }
+
+    axios.get(`https://suicide-watch-backend.herokuapp.com/users/byname/${this.state.user.name}`)
+    .then(res => {
+      this.setState({image: res.data.image})
+    })
+    .catch(err => console.error(err));
   }
 
   render() {
@@ -28,11 +37,19 @@ export default class Home extends React.Component {
       <React.Fragment>
         {
           !this.state.isValid ? <Route render={(props) => <Register {...props} />} /> || "Not correctly Logged in." :
+            this.state.status ?
+              "Loading..."
             <div className="home-flex-box">
               <h2>Welcome to the Home Page / Your User Profile (for now...)</h2>
+              this.status
               {
-                this.state.user.image ?
-                  <img src={this.state.user.image} /> :
+                this.state.image ?
+                  <img 
+                  style={{width: "300px"}} 
+                  className="homeImage"
+                  src={this.state.image}
+                  alt={this.state}
+                  />:
                   null
               }
               <p>

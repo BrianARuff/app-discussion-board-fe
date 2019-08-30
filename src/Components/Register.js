@@ -27,16 +27,17 @@ export default class Register extends React.Component {
     this.setState({status: "registering"});
     axios.post("https://suicide-watch-backend.herokuapp.com/auth/register", this.state)
       .then(res => {
-        localStorage.setItem("username", res.data.user.name);
         Cookie.set("token", res.data.token, {
           expires: 7,
           path: "/"
         });
         this.setState({status: "Registered"});
         this.props.history.push('/');
+        window.location.reload();
       })
       .catch(err => {
-        console.error(this.setState({status: "registering"}));
+        console.error(this.status, err);
+        this.setState({status: "registering"});
         this.setState({status: "Error registering account... Try again."});
       });
   }
