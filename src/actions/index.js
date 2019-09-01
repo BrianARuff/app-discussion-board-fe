@@ -7,7 +7,7 @@
  * export const CONST_NAME = "CONST_NAME";
 */
 
-export const EXP = "EXP";
+// export const EXP = "EXP";
 
 /**
  * section for area for functions to exported to components like such...

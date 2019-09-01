@@ -3,7 +3,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100vh;
   margin: 1.25rem;
+}
+
+.register-form-container h2 {
+  margin-top: 60px;
 }
 
 .register-form-flex {

@@ -4,5 +4,23 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  min-width: 320px;
   margin: 20px;
+}
+
+.logout-page-flex * {
+  max-width: 600px;
+  text-align: left;
+}
+
+.logout-page-flex p {
+  font-size: 0.9rem;
+}
+
+.loggedout-register-link {
+  text-decoration: none;
+}
+
+.loggedout-login-link {
+  text-decoration: none;
 }

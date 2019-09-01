@@ -37,7 +37,6 @@ export default class Register extends React.Component {
       })
       .catch(err => {
         console.error(this.status, err);
-        this.setState({status: "registering"});
         this.setState({status: "Error registering account... Try again."});
       });
   }
@@ -45,7 +44,8 @@ export default class Register extends React.Component {
   render() {
     return (
       <div className="register-form-container">
-        <h1>Register Below</h1>
+        <h1 className="hide">Register Page</h1>
+        <h2 className="fw-bold">Register Below</h2>
         <div className="register-form-flex">
           <FormControl fullWidth required>
             <InputLabel>

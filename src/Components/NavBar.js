@@ -11,11 +11,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 export default class NavBar extends React.Component {
-  state = {
-    isValid: false
+  constructor (props) {
+    super(props);
+    this.state = {
+      isValid: false
+    }
   }
 
-  static async componentWillMount() {
+  async UNSAFE_componentWillMount() {
     const payload = await window.cookieStore.get("token") || "";
 
     if (payload.name) {
