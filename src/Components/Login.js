@@ -10,7 +10,7 @@ export default class Login extends React.Component {
     name: "",
     email: "",
     password: "",
-    status: "Register"
+    status: "Login"
   }
 
   handleInputChange = (e) => {
@@ -42,12 +42,12 @@ export default class Login extends React.Component {
         <h1 className="hide">Login Page</h1>
         <h2 className="fw-bold">Login Below</h2>
         <h4 className="fw-light">Fill out either your email <b>or</b> username, not both.</h4>
-        <div className="login-form-flex">
+        <form className="login-form-flex">
           <FormControl fullWidth required>
             <InputLabel>
               Username
             </InputLabel>
-            <Input name="name" type="text" onChange={this.handleInputChange} />
+            <Input autoComplete="true" name="name" type="text" onChange={this.handleInputChange} />
             <FormHelperText>Fill out either your email or password.</FormHelperText>
           </FormControl>
 
@@ -55,7 +55,7 @@ export default class Login extends React.Component {
             <InputLabel>
               Email
             </InputLabel>
-            <Input name="email" type="email" onChange={this.handleInputChange} />
+            <Input autoComplete="true" name="email" type="email" onChange={this.handleInputChange} />
             <FormHelperText>Fill out either your email or password</FormHelperText>
           </FormControl>
 
@@ -63,7 +63,7 @@ export default class Login extends React.Component {
             <InputLabel>
               Password
             </InputLabel>
-            <Input name="password" type="password" onChange={this.handleInputChange} />
+            <Input autoComplete="true"  name="password" type="password" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a strong password that you can remember</FormHelperText>
           </FormControl>
 
@@ -79,7 +79,7 @@ export default class Login extends React.Component {
             </Button>
             <FormHelperText>Not yet a member? That is okay! Please head over to the <Link to="/register">Register</Link> page to register your new account!!</FormHelperText>
           </FormControl>
-        </div>
+        </form>
       </div>
     )
   }

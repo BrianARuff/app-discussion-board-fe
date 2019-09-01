@@ -11,7 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 export default class NavBar extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       isValid: false
@@ -44,12 +44,13 @@ export default class NavBar extends React.Component {
               this.state.isValid ?
                 (
                   <React.Fragment>
-
+                    {/* LOGO */}
                     <NavLink
                       className="nav-buttons"
                       exact
                       to="/"><Button color="inherit">SW</Button></NavLink>
 
+                    {/* LOGO */}
                     <NavLink
                       activeClassName="nav-button-active"
                       className="nav-buttons"
@@ -61,6 +62,27 @@ export default class NavBar extends React.Component {
                       </Button>
                     </NavLink>
 
+                    {/* New Article
+                      ********************
+                      ********************
+                      ********************
+                TODO: CREATE ARTICLE FUNCTIONALITY
+                      ********************
+                      ********************
+                      ********************
+                    */}
+                    <NavLink
+                      activeClassName="nav-button-active"
+                      className="nav-buttons"
+                      exact to="/">
+                      <Button
+                        onClick={this.handleUpdateUrl}
+                        color="inherit">
+                        Create Content
+                      </Button>
+                    </NavLink>
+
+                    {/* LOGOUT */}
                     <NavLink
                       activeClassName="nav-button-active"
                       className="nav-buttons"
@@ -73,9 +95,10 @@ export default class NavBar extends React.Component {
                     </NavLink>
 
                   </React.Fragment>
-                ) :
+                ) : // logged out state below
                 (
                   <React.Fragment>
+                    {/* LOGO */}
                     <NavLink
                       className="nav-buttons"
                       exact to="/">
@@ -85,6 +108,7 @@ export default class NavBar extends React.Component {
                         </Button>
                     </NavLink>
 
+                    {/* LOGIN */}
                     <NavLink
                       activeClassName="nav-button-active" className="nav-buttons"
                       exact

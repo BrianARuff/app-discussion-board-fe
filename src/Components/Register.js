@@ -24,20 +24,20 @@ export default class Register extends React.Component {
   }
 
   registerUser = () => {
-    this.setState({status: "registering"});
+    this.setState({ status: "registering" });
     axios.post("https://suicide-watch-backend.herokuapp.com/auth/register", this.state)
       .then(res => {
         Cookie.set("token", res.data.token, {
           expires: 7,
           path: "/"
         });
-        this.setState({status: "Registered"});
+        this.setState({ status: "Registered" });
         this.props.history.push('/');
         window.location.reload();
       })
       .catch(err => {
         console.error(this.status, err);
-        this.setState({status: "Error registering account... Try again."});
+        this.setState({ status: "Error registering account... Try again." });
       });
   }
 
@@ -46,12 +46,12 @@ export default class Register extends React.Component {
       <div className="register-form-container">
         <h1 className="hide">Register Page</h1>
         <h2 className="fw-bold">Register Below</h2>
-        <div className="register-form-flex">
+        <form className="register-form-flex">
           <FormControl fullWidth required>
             <InputLabel>
               Username
               </InputLabel>
-            <Input name="name" type="text" onChange={this.handleInputChange} />
+            <Input autoComplete="true" name="name" type="text" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a username that you are comfortable using and can remember</FormHelperText>
           </FormControl>
 
@@ -59,7 +59,7 @@ export default class Register extends React.Component {
             <InputLabel>
               Email
             </InputLabel>
-            <Input name="email" type="email" onChange={this.handleInputChange} />
+            <Input autoComplete="true" name="email" type="email" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a valid email address that you can keep up with</FormHelperText>
           </FormControl>
 
@@ -67,7 +67,7 @@ export default class Register extends React.Component {
             <InputLabel>
               Password
             </InputLabel>
-            <Input name="password" type="password" onChange={this.handleInputChange} />
+            <Input autoComplete="true" name="password" type="password" onChange={this.handleInputChange} />
             <FormHelperText>Please enter a strong password that you can remember</FormHelperText>
           </FormControl>
 
@@ -86,13 +86,14 @@ export default class Register extends React.Component {
           </FormControl>
 
           <br />
-          <StyledDropZone label="Select or Drop your image here" onDrop={(file, text) => {
-            const reader = new FileReader();
-            reader.onload = upload => {
+          <StyledDropZone 
+            label="Select or Drop your image here" onDrop={(file, text) => {
+              const reader = new FileReader();
+              reader.onload = upload => {
               this.setState({ image: upload.srcElement.result });
-            };
-            reader.readAsDataURL(file);
-          }}>
+              };
+              reader.readAsDataURL(file);
+            }}>
           </StyledDropZone>
 
           <br />
@@ -107,7 +108,7 @@ export default class Register extends React.Component {
             </Button>
             <FormHelperText>Already registered? Please go <Link to="/login">Login</Link> to login.</FormHelperText>
           </FormControl>
-        </div>
+        </form>
       </div>
     )
   }

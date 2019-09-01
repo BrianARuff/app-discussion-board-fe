@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Register from "./Register";
+import Login from "./Login.js";
+import MyArticles from "./MyArticles.js";
 import axios from "axios";
 import "../styles/home.css";
 
@@ -20,15 +21,13 @@ export default class Home extends React.Component {
       const bearerToken = payload.value.split(".")[1];
       const payloadData = JSON.parse(atob(bearerToken));
       this.setState({ status: "Loaded", isValid: true, user: payloadData });
-      console.log('good', this.state);
     } else {
       this.setState({ status: "", isValid: false, user: {} });
-      console.log('err', this.state);
     }
 
     axios.get(`https://suicide-watch-backend.herokuapp.com/users/byname/${this.state.user.name}`)
       .then(res => {
-        this.setState({ image: res.data.image })
+        this.setState({ image: res.data.image, id: res.data.id })
       })
       .catch(err => 1);
   }
@@ -37,7 +36,7 @@ export default class Home extends React.Component {
     return (
       <div className="home-flex-box">
         {
-          !this.state.isValid ? <Route render={(props) => <Register {...props} />} /> || "Not correctly Logged in." :
+          !this.state.isValid ? <Route render={(props) => <Login {...props} />} /> || "Not correctly Logged in." :
             this.state.status === "Loading" ? (
               <React.Fragment>
                 <h4>Loading...</h4>
@@ -65,8 +64,10 @@ export default class Home extends React.Component {
                 <p>
                   <span className="fw-bold">Description:</span> {this.state.user.description}
                 </p>
-              </div> || <p>You were able to authenticate into the application, but somehow managed to reach this fall back space. Please logout and login again or register a new account.</p>
+              </div>
         }
+        <hr color="lightgray" style={{width: "100%"}} />
+        <MyArticles user={this.state.user} />
       </div>
     )
   }
