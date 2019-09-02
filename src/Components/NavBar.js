@@ -11,17 +11,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 export default class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isValid: false
-    }
+  state = {
+    isValid: false
   }
 
-  async UNSAFE_componentWillMount() {
+  async componentDidMount() {
     const payload = await window.cookieStore.get("token") || "";
-
-    if (payload.name) {
+    // Object.hasOwnProperty(this)
+    if (payload.hasOwnProperty('name')) {
       this.setState({ isValid: true });
     } else {
       this.setState({ isValid: false });
@@ -62,7 +59,8 @@ export default class NavBar extends React.Component {
                       </Button>
                     </NavLink>
 
-                    {/* New Article
+                    {
+                      /* New Article
                       ********************
                       ********************
                       ********************
@@ -70,11 +68,12 @@ export default class NavBar extends React.Component {
                       ********************
                       ********************
                       ********************
-                    */}
+                    */
+                   }
                     <NavLink
                       activeClassName="nav-button-active"
                       className="nav-buttons"
-                      exact to="/">
+                      exact to="/createContent">
                       <Button
                         onClick={this.handleUpdateUrl}
                         color="inherit">

@@ -24,12 +24,14 @@ export default class Home extends React.Component {
     } else {
       this.setState({ status: "", isValid: false, user: {} });
     }
-
-    axios.get(`https://suicide-watch-backend.herokuapp.com/users/byname/${this.state.user.name}`)
+    axios.get(`https://suicide-watch-backend.herokuapp.com/users/${this.state.user.id}`)
       .then(res => {
         this.setState({ image: res.data.image, id: res.data.id })
       })
-      .catch(err => 1);
+      .catch(err => {
+        this.setState({status: "Error Loading Image"});
+        console.error(err);
+      });
   }
 
   render() {
