@@ -2,16 +2,28 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Grid, Avatar } from "@material-ui/core";
 import defaultAvatarJPEG from "../Images/defaultAvatar.png";
+import axios from "axios";
 import "../styles/article.css";
 
 export default class Article extends React.Component {
   state = {
-    width: window.innerWidth
+    width: window.innerWidth,
+    image: ""
   }
   componentDidMount() {
     this.props.article.user_id = Number(this.props.article.user_id);
 
     window.addEventListener("resize", this.setState({ width: window.innerWidth }));
+
+    axios.get(`https://suicide-watch-backend.herokuapp.com/users/${this.props.article.user_id}`)
+    .then(res => {
+      this.setState({ image: res.data.image, id: res.data.id });
+    })
+    .catch(err => {
+      this.setState({ status: "Error Loading Image" });
+      console.error(err);
+    });
+    
   }
 
   componentWillUnmount() {
@@ -44,7 +56,7 @@ export default class Article extends React.Component {
           >
             <Avatar
               alt={this.props.article.name ? this.props.article.name : "No Name"}
-              src={this.props.image ? this.props.image : defaultAvatarJPEG} className="article-image"
+              src={this.state.image ? this.state.image : defaultAvatarJPEG} className="article-image"
             />
           </Grid>
         </Grid>

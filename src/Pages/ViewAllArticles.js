@@ -7,8 +7,7 @@ import uuid from "uuid/v4";
 export default class ViewAllArticles extends React.Component {
   state = {
     articles: [],
-    user: {},
-    image: ""
+    user: {}
   }
 
   // validate account...
@@ -30,15 +29,6 @@ export default class ViewAllArticles extends React.Component {
           console.error(err);
         });
 
-      axios.get(`https://suicide-watch-backend.herokuapp.com/users/${this.state.user.id}`)
-      .then(res => {
-        this.setState({ image: res.data.image, id: res.data.id })
-      })
-      .catch(err => {
-        this.setState({ status: "Error Loading Image" });
-        console.error(err);
-      });
-
     } else {
       this.setState({ user: {} });
     }
@@ -54,7 +44,6 @@ export default class ViewAllArticles extends React.Component {
                 key={uuid()} 
                 render={props => 
                   <Article
-                    image={this.state.image}
                     article={article} 
                     {...props}                    
                   />
