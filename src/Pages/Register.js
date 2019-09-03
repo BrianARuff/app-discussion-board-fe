@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { InputLabel, FormHelperText, Input, FormControl, Button } from "@material-ui/core";
 import { StyledDropZone } from 'react-drop-zone'
+import LoopIcon from '@material-ui/icons/Loop';
 import 'react-drop-zone/dist/styles.css';
 import axios from "axios";
 import Cookie from "js-cookie";
@@ -16,7 +17,14 @@ export default class Register extends React.Component {
     description: "",
     image: "",
     role: "member",
-    status: "Register"
+    status: "Register",
+    dropZoneText: "Select or Drop your Profile Image Here"
+  }
+
+  spinnerRef = React.createRef();
+
+  componentDidMount() {
+    this.spinnerRef.current.className = "hide";
   }
 
   handleInputChange = (e) => {
@@ -24,7 +32,8 @@ export default class Register extends React.Component {
   }
 
   registerUser = () => {
-    this.setState({ status: "registering" });
+    this.spinnerRef.current.className = "spin";
+    this.setState({ status: "Registering" });
     axios.post("https://suicide-watch-backend.herokuapp.com/auth/register", this.state)
       .then(res => {
         Cookie.set("token", res.data.token, {
@@ -34,25 +43,42 @@ export default class Register extends React.Component {
         this.setState({ status: "Registered" });
         this.props.history.push('/');
         window.location.reload();
+        window.scrollTo({
+          top: 0,
+          behavior: "auto"
+        });
+        this.spinnerRef.current.className = "hide";
       })
       .catch(err => {
-        console.error(this.status, err);
         this.setState({ status: "Error registering account... Try again." });
+        this.spinnerRef.current.className = "hide";
       });
   }
+
+  imageUploadProgress = e => {
+    let progress = Math.round(e.loaded / e.total) * 100;
+    if (progress < 100) {
+      this.setState({dropZoneText: (progress + "%")});
+    } else {
+      this.setState({dropZoneText: "Your Profile Image was Uploaded"});
+      this.spinnerRef.current.className = ""
+    }
+  }
+
+  registerUserEnter = (e) => e.key === "Enter" ? this.registerUser() : null;
 
   render() {
     return (
       <div className="register-form-container">
         <h1 className="hide">Register Page</h1>
         <h2 className="fw-bold">Register Below</h2>
-        <form className="register-form-flex">
+        <form onKeyDown={(e) => this.registerUserEnter(e)} className="register-form-flex">
           <FormControl fullWidth required>
             <InputLabel>
               Username
               </InputLabel>
             <Input autoComplete="true" name="name" type="text" onChange={this.handleInputChange} />
-            <FormHelperText>Please enter a username that you are comfortable using and can remember</FormHelperText>
+            <FormHelperText>Please enter your username</FormHelperText>
           </FormControl>
 
           <FormControl fullWidth required>
@@ -86,15 +112,18 @@ export default class Register extends React.Component {
           </FormControl>
 
           <br />
-          <StyledDropZone 
-            label="Select or Drop your image here" onDrop={(file, text) => {
-              const reader = new FileReader();
-              reader.onload = upload => {
-              this.setState({ image: upload.srcElement.result });
-              };
-              reader.readAsDataURL(file);
-            }}>
-          </StyledDropZone>
+          <FormControl fullWidth>
+            <StyledDropZone 
+              label={this.state.dropZoneText}
+              onDrop={(file, text) => {
+                const reader = new FileReader();
+                reader.onload = upload =>
+                this.setState({ image: upload.srcElement.result });
+                reader.onprogress = this.imageUploadProgress
+                reader.readAsDataURL(file);
+              }}>
+            </StyledDropZone>
+          </FormControl>
 
           <br />
           <FormControl fullWidth>
@@ -104,6 +133,7 @@ export default class Register extends React.Component {
               color="secondary"
               variant="contained"
             >
+              <span style={{position: "relative", left: -10, paddingTop: "5px"}} ref={this.spinnerRef} className={this.state.spinner}><LoopIcon /></span>
               {this.state.status}
             </Button>
             <FormHelperText>Already registered? Please go <Link to="/login">Login</Link> to login.</FormHelperText>

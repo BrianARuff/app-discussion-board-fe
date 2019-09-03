@@ -1,9 +1,10 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Login from "./Login.js";
-import MyArticles from "./MyArticles.js";
+import MyArticles from "../Components/MyArticles.js";
 import axios from "axios";
 import "../styles/home.css";
+import { Grid } from "@material-ui/core";
 
 export default class Home extends React.Component {
   state = {
@@ -12,6 +13,7 @@ export default class Home extends React.Component {
     isValid: false,
     image: ""
   }
+  
 
   async componentDidMount() {
     this.setState({ status: "Loading" });
@@ -24,19 +26,24 @@ export default class Home extends React.Component {
     } else {
       this.setState({ status: "", isValid: false, user: {} });
     }
-    axios.get(`https://suicide-watch-backend.herokuapp.com/users/${this.state.user.id}`)
-      .then(res => {
-        this.setState({ image: res.data.image, id: res.data.id })
-      })
-      .catch(err => {
+
+    try {
+      const user = await axios.get(`https://suicide-watch-backend.herokuapp.com/users/${this.state.user.id}`);
+      
+      if (!user) {
         this.setState({status: "Error Loading Image"});
-        console.error(err);
-      });
+      } else {
+        this.setState({ image: user.data.image, id: user.data.id });
+      }
+    } catch (error) {
+      this.setState({status: "Error Loading Image"});
+      console.error(error);
+    }
   }
 
   render() {
     return (
-      <div className="home-flex-box">
+      <div className="pd-2">
         {
           !this.state.isValid ? <Route render={(props) => <Login {...props} />} /> || "Not correctly Logged in." :
             this.state.status === "Loading" ? (
@@ -44,32 +51,38 @@ export default class Home extends React.Component {
                 <h4>Loading...</h4>
               </React.Fragment>
             ) :
-              <div className="home-flex-box">
+              <div>
                 <h1 className="hide">Home Page</h1>
-                <h2 className="fw-bold">Welcome to the Home Page / Your User Profile (for now...)</h2>
                 {
                   this.state.image ?
                     <img
-                      style={{ width: "300px" }}
+                      style={{ 
+                        width: "300px",
+                        margin: "20px 0"
+                      }}
                       className="homeImage"
                       src={this.state.image}
                       alt={this.state}
                     /> :
-                    <p className="fw-light">No image provided :(</p>
+                    <p className="fw-light">No image provided :( or Error Loading Image</p>
                 }
-                <p>
-                  <span className="fw-bold">Name:</span> {this.state.user.name}
-                </p>
-                <p>
-                  <span className="fw-bold">Email:</span> {this.state.user.email}
-                </p>
-                <p>
-                  <span className="fw-bold">Description:</span> {this.state.user.description}
-                </p>
+                <Grid 
+                  container 
+                  alignItems="flex-start" justify="space-evenly">
+                  <Grid item>
+                    <span className="fw-bold"></span> {this.state.user.description}
+                  </Grid>
+                </Grid>
               </div>
         }
-        <hr color="lightgray" style={{width: "100%"}} />
-        <MyArticles user={this.state.user} />
+        <br/><br/>
+        <Route render={props => 
+          <MyArticles 
+            image={this.state.image} 
+            {...props} 
+            />
+          } 
+        />
       </div>
     )
   }

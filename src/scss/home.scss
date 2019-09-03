@@ -1,0 +1,15 @@
+.homeImage {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
+  border-radius: 4px 40px 4px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate3d(3,5,7,-3deg);
+  -moz-transform: rotate3d(3,5,7,-3deg);
+  -o-transform: rotate3d(3,5,7,-3deg);
+  -ms-transform: rotate3d(3,5,7,-3deg);
+  transform: rotate3d(3,5,7,-3deg);
+}

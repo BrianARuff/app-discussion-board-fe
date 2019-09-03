@@ -1,11 +1,17 @@
 import React from 'react';
 import './App.css';
 import { Route } from "react-router-dom";
-import Login from "./Components/Login.js";
+
+// pages
+import Login from "./Pages/Login.js";
+import Home from "./Pages/Home.js";
+import Register from "./Pages/Register.js";
+import LoggedOut from './Pages/LoggedOut';
+import CreateContent from "./Pages/CreateContent";
+import ViewAllArticles from "./Pages/ViewAllArticles";
+
+// components
 import NavBar from "./Components/NavBar.js";
-import Home from "./Components/Home.js";
-import Register from "./Components/Register.js";
-import LoggedOut from './Components/LoggedOut';
 
 
 export default class App extends React.Component {
@@ -13,10 +19,11 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <NavBar />
+        <Route exact path="/" render={props => <Home {...props} />} />
         <Route exact path="/login" render={props => <Login {...props} />} />
         <Route exact path="/register" render={props => <Register {...props} />} />
-        <Route exact path="/" render={props => <Home {...props} />} />
         <Route exact path="/logout" render={props => <LoggedOut {...props} />} />
+        <Route exact path="/createContent" render={props => <CreateContent {...props} />} /><Route exact path="/articles" render={props => <ViewAllArticles {...props} />} />
       </div>
     );
   }

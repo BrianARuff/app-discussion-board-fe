@@ -17,7 +17,6 @@ export default class NavBar extends React.Component {
 
   async componentDidMount() {
     const payload = await window.cookieStore.get("token") || "";
-    // Object.hasOwnProperty(this)
     if (payload.hasOwnProperty('name')) {
       this.setState({ isValid: true });
     } else {
@@ -29,6 +28,7 @@ export default class NavBar extends React.Component {
     Cookie.remove("token");
     localStorage.removeItem("username");
     localStorage.removeItem("image");
+    window.location.href = window.location.origin;
   }
 
   render() {
@@ -36,21 +36,20 @@ export default class NavBar extends React.Component {
       <div>
         <AppBar position="static">
           <Toolbar className="navigation">
-
             {
               this.state.isValid ?
                 (
-                  <React.Fragment>
+                  <div className="nav-bar-container mobile-nav-bar-container">
                     {/* LOGO */}
                     <NavLink
-                      className="nav-buttons"
+                      className="nav-buttons mobile-nav-buttons"
                       exact
                       to="/"><Button color="inherit">SW</Button></NavLink>
 
                     {/* LOGO */}
                     <NavLink
                       activeClassName="nav-button-active"
-                      className="nav-buttons"
+                      className="nav-buttons mobile-nav-buttons"
                       exact to="/">
                       <Button
                         onClick={this.handleUpdateUrl}
@@ -59,32 +58,34 @@ export default class NavBar extends React.Component {
                       </Button>
                     </NavLink>
 
-                    {
-                      /* New Article
-                      ********************
-                      ********************
-                      ********************
-                TODO: CREATE ARTICLE FUNCTIONALITY
-                      ********************
-                      ********************
-                      ********************
-                    */
-                   }
+                    {/* VIEW ARTICLES */}
                     <NavLink
                       activeClassName="nav-button-active"
-                      className="nav-buttons"
+                      className="nav-buttons mobile-nav-buttons"
+                      exact to="/articles">
+                      <Button
+                        onClick={this.handleUpdateUrl}
+                        color="inherit">
+                          Articles
+                      </Button>
+                    </NavLink>                     
+
+                    {/* CREATE CONTENT */}
+                    <NavLink
+                      activeClassName="nav-button-active"
+                      className="nav-buttons mobile-nav-buttons"
                       exact to="/createContent">
                       <Button
                         onClick={this.handleUpdateUrl}
                         color="inherit">
-                        Create Content
+                        Create an Article
                       </Button>
-                    </NavLink>
+                    </NavLink>                   
 
                     {/* LOGOUT */}
                     <NavLink
                       activeClassName="nav-button-active"
-                      className="nav-buttons"
+                      className="nav-buttons mobile-nav-buttons"
                       exact to="/logout">
                       <Button
                         onClick={this.logout}
@@ -93,13 +94,13 @@ export default class NavBar extends React.Component {
                       </Button>
                     </NavLink>
 
-                  </React.Fragment>
+                  </div>
                 ) : // logged out state below
                 (
                   <React.Fragment>
                     {/* LOGO */}
                     <NavLink
-                      className="nav-buttons"
+                      className="nav-buttons mobile-nav-buttons"
                       exact to="/">
                       <Button
                         color="inherit">
@@ -109,7 +110,7 @@ export default class NavBar extends React.Component {
 
                     {/* LOGIN */}
                     <NavLink
-                      activeClassName="nav-button-active" className="nav-buttons"
+                      activeClassName="nav-button-active" className="nav-buttons mobile-nav-buttons"
                       exact
                       to="/login">
                       <Button
@@ -120,7 +121,7 @@ export default class NavBar extends React.Component {
 
                     <NavLink
                       activeClassName="nav-button-active"
-                      className="nav-buttons"
+                      className="nav-buttons mobile-nav-buttons"
                       exact
                       to="/register">
                       <Button
