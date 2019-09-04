@@ -48,10 +48,11 @@ export default class Article extends React.Component {
           <Grid
             item
             style={{
-              position: "absolute",
-              top: -10,
-              left: 20,
-              display: this.state.width < 769 ? "none" : "block"
+              position: "relative",
+              top: 0,
+              left: 0,
+              margin: "20px 0",
+              display: this.state.width < 769 ? "none" : "flex"
             }}
           >
             <Avatar
@@ -61,7 +62,7 @@ export default class Article extends React.Component {
           </Grid>
         </Grid>
         <ReactMarkdown
-          source={this.props.article.text.replace(/<br ?\/?>/g, "\n")}
+          source={this.props.article.text.replace(/<br> ?\/?>/g, "\n")}
         />
         <br />
         <div className="flex-row">
