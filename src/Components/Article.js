@@ -62,7 +62,7 @@ export default class Article extends React.Component {
           </Grid>
         </Grid>
         <ReactMarkdown
-          source={this.props.article.text.replace(/<br> ?\/?>/g, "\n")}
+          source={this.props.article.text.replace(/<br ?\/?>/g, "\n")}
         />
         <br />
         <div className="flex-row">
