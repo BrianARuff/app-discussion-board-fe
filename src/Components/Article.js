@@ -51,7 +51,7 @@ export default class Article extends React.Component {
               position: "relative",
               top: 0,
               left: 0,
-              margin: "20px 0",
+              margin: "20px",
               display: this.state.width < 769 ? "none" : "flex"
             }}
           >

@@ -57,7 +57,7 @@ export default class Home extends React.Component {
                     <img
                       style={{ 
                         width: "300px",
-                        margin: "20px 0"
+                        margin: "20px"
                       }}
                       className="homeImage"
                       src={this.state.image}
