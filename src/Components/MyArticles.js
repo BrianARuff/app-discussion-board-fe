@@ -14,11 +14,11 @@ export default class MyArticles extends React.Component {
 
   // validate account...
   async componentDidMount() {
+    // =====
     this.setState({ status: "Loading" });
-    const payload = await window.cookieStore.get("token") || "";
-
-    if (payload.name) {
-      const bearerToken = payload.value.split(".")[1];
+    const payload = await document.cookie.split("=")[1] || "";
+    if (payload.length > 0) {
+      const bearerToken = payload.split(".")[1];
       const payloadData = JSON.parse(atob(bearerToken));
       this.setState({ user: payloadData });
     } else {

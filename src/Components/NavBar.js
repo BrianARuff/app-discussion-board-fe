@@ -16,8 +16,17 @@ export default class NavBar extends React.Component {
   }
 
   async componentDidMount() {
-    const payload = await window.cookieStore.get("token") || "";
-    if (payload.hasOwnProperty('name')) {
+    const payload = await document.cookie.split("=")[1] || "";
+    console.log("Navbar Component\n", "\nPayload:", payload);
+    if (payload.length > 0) {
+      const bearerToken = payload.split(".")[1];
+      const payloadData = JSON.parse(atob(bearerToken));
+      this.setState({ user: payloadData });
+      console.log(bearerToken, payloadData);
+    } else {
+      console.log("No Payload in Navbar")
+    }
+    if (payload.length > 0) {
       this.setState({ isValid: true });
     } else {
       this.setState({ isValid: false });

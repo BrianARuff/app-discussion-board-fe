@@ -10,6 +10,7 @@ export default class Article extends React.Component {
     width: window.innerWidth,
     image: ""
   }
+
   componentDidMount() {
     this.props.article.user_id = Number(this.props.article.user_id);
 
@@ -23,7 +24,6 @@ export default class Article extends React.Component {
       this.setState({ status: "Error Loading Image" });
       console.error(err);
     });
-    
   }
 
   componentWillUnmount() {
