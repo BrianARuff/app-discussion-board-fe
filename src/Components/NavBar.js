@@ -38,7 +38,7 @@ export default class NavBar extends React.Component {
     localStorage.removeItem("username");
     localStorage.removeItem("image");
     window.location.href = window.location.origin;
-  }
+  } 
 
   render() {
     return (
