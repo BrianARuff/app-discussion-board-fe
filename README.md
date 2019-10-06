@@ -1,4 +1,4 @@
-Link to FE: [SW](https://elastic-shaw-7b0e0a.netlify.com/)
+[View Site in Current Condition](https://elastic-shaw-7b0e0a.netlify.com/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
