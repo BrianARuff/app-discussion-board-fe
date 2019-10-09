@@ -8,18 +8,19 @@ export default class ViewAllArticles extends React.Component {
   state = {
     articles: [],
     user: {}
-  }
+  };
 
   // validate account...
   async componentDidMount() {
     this.setState({ status: "Loading" });
-    const payload = await document.cookie.split("=")[1] || "";
+    const payload = (await document.cookie.split("=")[1]) || "";
     if (payload.length > 0) {
       const bearerToken = payload.split(".")[1];
       const payloadData = JSON.parse(atob(bearerToken));
       this.setState({ user: payloadData });
 
-      axios.get("https://suicide-watch-backend.herokuapp.com/articles/")
+      axios
+        .get("https://suicide-watch-backend.herokuapp.com/articles/")
         .then(res => {
           this.setState({ articles: res.data.articles });
         })
@@ -27,7 +28,6 @@ export default class ViewAllArticles extends React.Component {
           this.setState({ articles: [] });
           console.error(err);
         });
-
     } else {
       this.setState({ user: {} });
     }
@@ -36,22 +36,15 @@ export default class ViewAllArticles extends React.Component {
   render() {
     return (
       <div>
-        {
-          this.state.articles.map(article => {
-            return (
-              <Route
-                key={uuid()} 
-                render={props => 
-                  <Article
-                    article={article} 
-                    {...props}                    
-                  />
-                } 
-              />
-            )
-          })
-        }
+        {this.state.articles.map(article => {
+          return (
+            <Route
+              key={uuid()}
+              render={props => <Article article={article} {...props} />}
+            />
+          );
+        })}
       </div>
-    )
+    );
   }
 }
