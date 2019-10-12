@@ -47,7 +47,7 @@ export default class CreateComment extends React.Component {
           fullWidth={true}
           color="secondary"
         >
-          Hi
+          Post Comment
         </Button>
       </div>
     );

@@ -8,8 +8,7 @@ export default class Comments extends React.Component {
   state = {
     comments: [],
     hasError: false,
-    status: "Loading",
-    count: 0
+    status: "Loading"
   };
   componentDidMount() {
     axios
@@ -37,7 +36,7 @@ export default class Comments extends React.Component {
     } else {
       return (
         <React.Fragment>
-          {this.state.status === "Complete" ? (
+          {this.state.status === "Loading" ? (
             <React.Fragment>
               <h4>Loading</h4>
               <ClipLoader />
