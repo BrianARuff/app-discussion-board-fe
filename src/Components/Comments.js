@@ -49,7 +49,7 @@ export default class Comments extends React.Component {
             {this.state.comments.length < 1 ? (
               <h4>No Comments :(</h4>
             ) : (
-              (this.state.comments.map || []).map(comment => (
+              (this.state.comments.comments.map || []).map(comment => (
                 <Comment comment={comment} />
               ))
             )}
