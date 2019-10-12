@@ -33,27 +33,26 @@ export default class Comments extends React.Component {
   render() {
     if (this.state.hasError) {
       return <h4>Error Loading Comments :(</h4>;
-    } else {
-      return (
-        <React.Fragment>
-          {this.state.status === "Loading" ? (
-            <React.Fragment>
-              <h4>Loading</h4>
-              <ClipLoader />
-            </React.Fragment>
-          ) : (
-            <ul className="comment-list">
-              {this.state.comments.length < 1 ? (
-                <h4>No Comments :(</h4>
-              ) : (
-                (this.state.comments.map || []).map(comment => {
-                  return <Comment comment={comment} />;
-                })
-              )}
-            </ul>
-          )}
-        </React.Fragment>
-      );
     }
+    return (
+      <React.Fragment>
+        {this.state.status === "Loading" ? (
+          <React.Fragment>
+            <h4>Loading</h4>
+            <ClipLoader />
+          </React.Fragment>
+        ) : (
+          <ul className="comment-list">
+            {this.state.comments.length < 1 ? (
+              <h4>No Comments :(</h4>
+            ) : (
+              (this.state.comments.map || []).map(comment => {
+                return <Comment comment={comment} />;
+              })
+            )}
+          </ul>
+        )}
+      </React.Fragment>
+    );
   }
 }
