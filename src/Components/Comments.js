@@ -7,7 +7,6 @@ export default class Comments extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <hr />
         <ul className="comment-list">
           {this.state.comments.length < 1 ? (
             <h4>No Comments :(</h4>

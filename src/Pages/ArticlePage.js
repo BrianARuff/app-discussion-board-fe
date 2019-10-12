@@ -5,6 +5,7 @@ import { ClipLoader } from "react-spinners";
 import Avatar from "@material-ui/core/Avatar";
 import defaultAvatarJPEG from "../Images/defaultAvatar.png";
 import Comments from "../Components/Comments";
+import CreateComment from "../Components/CreateComment";
 
 export default class ArticlePage extends React.Component {
   state = {
@@ -85,6 +86,11 @@ export default class ArticlePage extends React.Component {
               </span>
             </div>
             <div style={{ width: "100%" }} className="comments-container">
+              <CreateComment
+                user={this.state.user}
+                article={this.state.article}
+                articlePost={this.state.articlePoster}
+              />
               <h4>Comments</h4>
               <Comments />
             </div>
