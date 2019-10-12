@@ -27,7 +27,8 @@ export default class CreateComment extends React.Component {
         article_id: Number(this.props.article.id)
       })
       .then(res => {
-        this.setState({ text: "" });
+        this.forceUpdate();
+        console.log("render forced");
       })
       .catch(err => console.log(err));
   };
