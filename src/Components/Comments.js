@@ -8,20 +8,21 @@ export default class Comments extends React.Component {
   state = {
     comments: [],
     hasError: false,
-    status: "Loading"
+    status: "Loading",
+    count: 0
   };
   componentDidMount() {
     axios
       .get(
         `https://suicide-watch-backend.herokuapp.com/comments/article/${this.props.article.id}`
       )
-      .then(res =>
+      .then(res => {
         this.setState({
           comments: res.data,
           status: "Complete",
           hasError: false
-        })
-      )
+        });
+      })
       .catch(err =>
         this.setState(
           { comments: [], hasError: true, status: "Complete" },
@@ -29,9 +30,10 @@ export default class Comments extends React.Component {
         )
       );
   }
+
   render() {
     if (this.state.hasError) {
-      return <h4>Error Loading Page :(</h4>;
+      return <h4>Error Loading Comments :(</h4>;
     } else {
       return (
         <React.Fragment>
