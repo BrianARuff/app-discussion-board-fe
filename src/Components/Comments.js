@@ -22,7 +22,13 @@ export default class Comments extends React.Component {
             status: "Complete",
             hasError: false
           },
-          () => console.log("state comments", this.state.comments)
+          () =>
+            console.log(
+              "state comments",
+              this.state.comments,
+              "access",
+              this.state.comments.comments
+            )
         );
       })
       .catch(err =>
