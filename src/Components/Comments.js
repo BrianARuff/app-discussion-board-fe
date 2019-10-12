@@ -16,20 +16,11 @@ export default class Comments extends React.Component {
         `https://suicide-watch-backend.herokuapp.com/comments/article/${this.props.article.id}`
       )
       .then(res => {
-        this.setState(
-          {
-            comments: res.data,
-            status: "Complete",
-            hasError: false
-          },
-          () =>
-            console.log(
-              "state comments",
-              this.state.comments,
-              "access",
-              this.state.comments.comments
-            )
-        );
+        this.setState({
+          comments: res.data.comments,
+          status: "Complete",
+          hasError: false
+        });
       })
       .catch(err =>
         this.setState(
@@ -53,7 +44,6 @@ export default class Comments extends React.Component {
               <h4>No Comments :(</h4>
             ) : (
               (this.state.comments.map || []).map(comment => {
-                console.log("comment obj", comment);
                 return <Comment comment={comment} />;
               })
             )}
