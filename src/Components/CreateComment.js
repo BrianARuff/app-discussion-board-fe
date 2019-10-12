@@ -1,12 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {
-  FormHelperText,
-  FormControl,
-  Button,
-  InputLabel,
-  Input
-} from "@material-ui/core";
+import { FormControl, Button } from "@material-ui/core";
 import "../styles/createComments.css";
 
 export default class CreateComment extends React.Component {
@@ -35,19 +29,41 @@ export default class CreateComment extends React.Component {
   render() {
     return (
       <div className="comment-form">
-        <h4 style={{ textAlign: "left" }}>Post a Comment</h4>
+        <h4
+          id="post-title"
+          aria-label="post comment"
+          style={{ textAlign: "left" }}
+        >
+          Post a Comment
+        </h4>
         <FormControl fullWidth required>
-          <InputLabel>Comment Text</InputLabel>
-          <Input name="text" type="text" onChange={this.handleInputChange} />
-          <FormHelperText>Fill out either your username</FormHelperText>
+          <textarea
+            aria-labelledby="post-title"
+            name="text"
+            type="text"
+            onChange={this.handleInputChange}
+            rows="5"
+            style={{
+              borderStyle: "inset",
+              borderRadius: "4px",
+              border: "1px solid black",
+              padding: "50px",
+              fontSize: "16px",
+              margin: "0 0 20px 0"
+            }}
+            className="fw-light"
+          ></textarea>
         </FormControl>
-        <br />
-        <br />
         <Button
           onClick={this.handleSubmittingComment}
           variant="contained"
           fullWidth={true}
           color="secondary"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alingItems: "center"
+          }}
         >
           Post Comment
         </Button>

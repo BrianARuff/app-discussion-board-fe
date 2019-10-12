@@ -1,12 +1,15 @@
 import React from "react";
 
 // material UI card components
-import { Avatar } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import {
+  Avatar,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  Typography,
+  Button
+} from "@material-ui/core";
 
 // unclassified
 import ReactMarkdown from "react-markdown";
@@ -26,6 +29,10 @@ export default class Article extends React.Component {
   };
 
   componentDidMount() {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     this.props.article.user_id = Number(this.props.article.user_id);
 
     window.addEventListener(
@@ -56,6 +63,42 @@ export default class Article extends React.Component {
   goToArticlePage = e => {
     this.props.history.push(`/article/${this.props.article.id}`);
   };
+
+  handleDislike = e => {
+    axios
+      .patch(
+        `https://suicide-watch-backend.herokuapp.com/articles/${this.props.article.id}/dislike`
+      )
+      .then(res => {
+        let position = document.querySelector("#root").getBoundingClientRect();
+        let { right, top } = position;
+        this.setState({ top, right }, () => {
+          window.location.reload();
+          window.scroll(right, -1 * top);
+        });
+      })
+      .catch(err => console.error(err));
+  };
+
+  handleLike = e => {
+    axios
+      .patch(
+        `https://suicide-watch-backend.herokuapp.com/articles/${this.props.article.id}/like`
+      )
+      .then(res => {
+        let position = document.querySelector("#root").getBoundingClientRect();
+        let { right, top } = position;
+        this.setState({ top, right }, () => {
+          window.location.reload();
+          window.scrollTo(right, -1 * top);
+        });
+      })
+      .catch(err => console.error(err));
+  };
+
+  componentDidUpdate() {
+    window.scroll(this.state.right, -1 * this.state.top);
+  }
 
   render() {
     return (
@@ -111,7 +154,15 @@ export default class Article extends React.Component {
                   fontSize: "12px"
                 }}
               >
-                Likes: {this.props.article.likes}
+                <Button
+                  fullWidth={true}
+                  variant="outlined"
+                  color="primary"
+                  size="small"
+                  onClick={this.handleLike}
+                >
+                  Likes: {this.props.article.likes}
+                </Button>
               </span>
               <span
                 className="fw-light pd-x-1"
@@ -120,7 +171,15 @@ export default class Article extends React.Component {
                   marginLeft: "0px"
                 }}
               >
-                Dislikes: {this.props.article.dislikes}
+                <Button
+                  fullWidth={true}
+                  variant="outlined"
+                  color="secondary"
+                  size="small"
+                  onClick={this.handleDislike}
+                >
+                  Dislikes: {this.props.article.dislikes}
+                </Button>
               </span>
             </div>
           </CardActions>

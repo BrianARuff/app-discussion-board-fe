@@ -44,7 +44,7 @@ code {
   0% {
     transform: rotate(0deg);
   }
-  
+
   100% {
     transform: rotate(360deg);
   }
@@ -194,11 +194,17 @@ textarea {
   justify-self: flex-start;
 }
 
-input, textarea {
+input,
+textarea {
   outline: none;
 }
 
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 span,
 div,
 p {
