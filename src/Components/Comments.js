@@ -22,7 +22,7 @@ export default class Comments extends React.Component {
             status: "Complete",
             hasError: false
           },
-          () => console.log(this.state.comments)
+          () => console.log("state comments", this.state.comments)
         );
       })
       .catch(err =>
@@ -34,9 +34,6 @@ export default class Comments extends React.Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return <h4>Error Loading Comments :(</h4>;
-    }
     return (
       <React.Fragment>
         {this.state.status === "Loading" ? (
