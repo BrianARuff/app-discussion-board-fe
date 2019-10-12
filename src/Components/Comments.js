@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/comments.css";
 import axios from "axios";
+import Comment from "../Components/Comment";
 
 export default class Comments extends React.Component {
   state = {
@@ -22,7 +23,7 @@ export default class Comments extends React.Component {
             <h4>No Comments :(</h4>
           ) : (
             (this.state.comments.map || []).map(comment => {
-              return <li className="comment-list-item">{comment.text}}</li>;
+              return <Comment comment={comment} />;
             })
           )}
         </ul>
