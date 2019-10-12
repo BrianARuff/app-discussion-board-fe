@@ -26,12 +26,9 @@ export default class CreateComment extends React.Component {
         author_id: Number(this.props.user.id),
         article_id: Number(this.props.article.id)
       })
-      .then(
-        res => console.log(res.data),
-        () => {
-          window.location.reload();
-        }
-      )
+      .then(res => {
+        window.location.reload();
+      })
       .catch(err => console.log(err));
   };
 
