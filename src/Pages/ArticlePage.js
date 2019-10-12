@@ -6,6 +6,7 @@ import Avatar from "@material-ui/core/Avatar";
 import defaultAvatarJPEG from "../Images/defaultAvatar.png";
 import Comments from "../Components/Comments";
 import CreateComment from "../Components/CreateComment";
+import ReactMarkdown from "react-markdown";
 
 export default class ArticlePage extends React.Component {
   state = {
@@ -71,11 +72,13 @@ export default class ArticlePage extends React.Component {
                     ? this.state.articlePoster.image
                     : defaultAvatarJPEG
                 }
-                className=""
-                style={{}}
               />
             </div>
-            <p className="fw-light">{this.state.article.text}</p>
+            <p className="fw-light">
+              <ReactMarkdown
+                source={this.state.article.text.replace(/<br ?\/?>/g, "\n")}
+              />
+            </p>
             <div className="postInfoContainer">
               <span className="author">
                 Posted By: {this.state.article.author}
@@ -92,7 +95,7 @@ export default class ArticlePage extends React.Component {
                 articlePost={this.state.articlePoster}
               />
               <h4>Comments</h4>
-              <Comments />
+              <Comments article={this.state.article} />
             </div>
           </React.Fragment>
         )}
