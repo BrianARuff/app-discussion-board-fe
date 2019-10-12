@@ -16,11 +16,14 @@ export default class Comments extends React.Component {
         `https://suicide-watch-backend.herokuapp.com/comments/article/${this.props.article.id}`
       )
       .then(res => {
-        this.setState({
-          comments: res.data.comments,
-          status: "Complete",
-          hasError: false
-        });
+        this.setState(
+          {
+            comments: res.data,
+            status: "Complete",
+            hasError: false
+          },
+          () => console.log(this.state.comments)
+        );
       })
       .catch(err =>
         this.setState(
