@@ -6,7 +6,6 @@ import { ClipLoader } from "react-spinners";
 
 export default class Comments extends React.Component {
   state = {
-    comments: [],
     hasError: false,
     status: "Loading"
   };
