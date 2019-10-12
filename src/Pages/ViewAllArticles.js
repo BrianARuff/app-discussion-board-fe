@@ -35,7 +35,7 @@ export default class ViewAllArticles extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ padding: "20px 0" }}>
         {this.state.articles.map(article => {
           return (
             <Route

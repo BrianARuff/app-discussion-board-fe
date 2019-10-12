@@ -1,0 +1,34 @@
+.article-page-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 700px;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.postInfoContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.postInfoContainer span {
+  margin: 0 1.6rem;
+}
+
+.title-image {
+  display: flex;
+  justify-content: baseline;
+  align-content: baseline;
+}
+
+.title-image h4 {
+  padding: 0 1.6rem;
+}
+
+/*# sourceMappingURL=articlePage.css.map */

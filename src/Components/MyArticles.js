@@ -39,9 +39,9 @@ export default class MyArticles extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h2 className="fw-bold">My Article List</h2>
-        {(this.state.articles || []).map(article => {
+        {(this.state.articles || []).map((article, index) => {
           return (
             <Route
               key={uuid()}
@@ -56,7 +56,7 @@ export default class MyArticles extends React.Component {
             />
           );
         })}
-      </div>
+      </React.Fragment>
     );
   }
 }

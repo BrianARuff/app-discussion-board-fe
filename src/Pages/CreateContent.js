@@ -7,6 +7,7 @@ import {
   Button,
   TextareaAutosize
 } from "@material-ui/core";
+import { ClipLoader } from "react-spinners";
 
 export default class CreateContent extends React.Component {
   state = {
@@ -106,7 +107,9 @@ export default class CreateContent extends React.Component {
   };
 
   render() {
-    return (
+    return this.state.status === "Loading" ? (
+      <ClipLoader />
+    ) : (
       <div className="create-content-flexbox">
         <h1 className="hide">Create Content Page</h1>
         <form className="create-content-form">
