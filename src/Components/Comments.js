@@ -39,7 +39,10 @@ export default class Comments extends React.Component {
             <ClipLoader />
           </React.Fragment>
         ) : (
-          <ul className="comment-list">
+          <ul
+            style={{ width: "100%", padding: "0", margin: "0" }}
+            className="comment-list"
+          >
             {this.state.comments.length < 1 ? (
               <h4>No Comments :(</h4>
             ) : (
