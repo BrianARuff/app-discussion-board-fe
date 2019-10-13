@@ -1,8 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import axios from "axios";
-import Article from "../Components/Article";
 import { Route } from "react-router-dom";
 import uuid from "uuid/v4";
+import { ClipLoader } from "react-spinners";
+
+// lazyload
+const Article = lazy(() => import("../Components/Article"));
 
 export default class ViewAllArticles extends React.Component {
   state = {
@@ -36,14 +39,16 @@ export default class ViewAllArticles extends React.Component {
   render() {
     return (
       <div style={{ padding: "20px 0" }}>
-        {this.state.articles.map(article => {
-          return (
-            <Route
-              key={uuid()}
-              render={props => <Article article={article} {...props} />}
-            />
-          );
-        })}
+        <Suspense fallback={<ClipLoader />}>
+          {this.state.articles.map(article => {
+            return (
+              <Route
+                key={uuid()}
+                render={props => <Article article={article} {...props} />}
+              />
+            );
+          })}
+        </Suspense>
       </div>
     );
   }

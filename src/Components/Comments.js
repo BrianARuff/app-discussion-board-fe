@@ -1,8 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "../styles/comments.css";
 import axios from "axios";
-import Comment from "../Components/Comment";
 import { ClipLoader } from "react-spinners";
+import uuid from "uuid/v4";
+
+// lazy load
+const Comment = lazy(() => import("../Components/Comment"));
 
 export default class Comments extends React.Component {
   state = {
@@ -39,18 +42,20 @@ export default class Comments extends React.Component {
             <ClipLoader />
           </React.Fragment>
         ) : (
-          <ul
-            style={{ width: "100%", padding: "0", margin: "0" }}
-            className="comment-list"
-          >
-            {this.state.comments.length < 1 ? (
-              <h4>No Comments :(</h4>
-            ) : (
-              (this.state.comments || []).map(comment => {
-                return <Comment comment={comment} />;
-              })
-            )}
-          </ul>
+          <Suspense fallback={<ClipLoader />}>
+            <ul
+              style={{ width: "100%", padding: "0", margin: "0" }}
+              className="comment-list"
+            >
+              {this.state.comments.length < 1 ? (
+                <h4>No Comments :(</h4>
+              ) : (
+                (this.state.comments || []).map(comment => {
+                  return <Comment key={uuid()} comment={comment} />;
+                })
+              )}
+            </ul>
+          </Suspense>
         )}
       </React.Fragment>
     );

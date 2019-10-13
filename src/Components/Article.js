@@ -1,8 +1,8 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
+import { ClipLoader } from "react-spinners";
 
 // material UI card components
 import {
-  Avatar,
   Card,
   CardActionArea,
   CardActions,
@@ -20,6 +20,9 @@ import axios from "axios";
 
 // style sheet
 import "../styles/article.css";
+
+// lazy load
+const Avatar = lazy(() => import("@material-ui/core/Avatar"));
 
 export default class Article extends React.Component {
   state = {
@@ -113,13 +116,17 @@ export default class Article extends React.Component {
                 flexDirection: "column"
               }}
             >
-              <Avatar
-                alt={
-                  this.props.article.name ? this.props.article.name : "No Name"
-                }
-                src={this.state.image ? this.state.image : defaultAvatarJPEG}
-                className="article-image"
-              />
+              <Suspense fallback={<ClipLoader />}>
+                <Avatar
+                  alt={
+                    this.props.article.name
+                      ? this.props.article.name
+                      : "No Name"
+                  }
+                  src={this.state.image ? this.state.image : defaultAvatarJPEG}
+                  className="article-image"
+                />
+              </Suspense>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   {this.props.article.hasOwnProperty("title")

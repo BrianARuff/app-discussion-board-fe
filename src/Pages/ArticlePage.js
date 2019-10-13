@@ -74,11 +74,11 @@ export default class ArticlePage extends React.Component {
                 }
               />
             </div>
-            <p className="fw-light">
+            <div className="fw-light">
               <ReactMarkdown
                 source={this.state.article.text.replace(/<br ?\/?>/g, "\n")}
               />
-            </p>
+            </div>
             <div className="postInfoContainer">
               <span className="author">
                 Posted By: {this.state.article.author}

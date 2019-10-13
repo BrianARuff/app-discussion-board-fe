@@ -1,8 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import axios from "axios";
-import Article from "../Components/Article";
 import uuid from "uuid/v4";
 import { Route } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
+
+// lazy loaded components
+const Article = lazy(() => import("../Components/Article"));
 
 export default class MyArticles extends React.Component {
   state = {
@@ -41,21 +44,23 @@ export default class MyArticles extends React.Component {
     return (
       <React.Fragment>
         <h2 className="fw-bold">My Article List</h2>
-        {(this.state.articles || []).map((article, index) => {
-          return (
-            <Route
-              key={uuid()}
-              render={props => (
-                <Article
-                  image={this.props.image}
-                  user={this.state.user}
-                  article={article}
-                  {...props}
-                />
-              )}
-            />
-          );
-        })}
+        <Suspense fallback={<ClipLoader />}>
+          {(this.state.articles || []).map((article, index) => {
+            return (
+              <Route
+                key={uuid()}
+                render={props => (
+                  <Article
+                    image={this.props.image}
+                    user={this.state.user}
+                    article={article}
+                    {...props}
+                  />
+                )}
+              />
+            );
+          })}
+        </Suspense>
       </React.Fragment>
     );
   }

@@ -8,7 +8,7 @@ export default class Comment extends React.Component {
     return (
       <div style={{ padding: "20px" }} className="comment-container">
         <Paper
-          elevation="10"
+          elevation={10}
           style={{ padding: "20px", border: "1px solid black" }}
         >
           <h4 className="posted-by fw-bold">

@@ -5,6 +5,7 @@ import MyArticles from "../Components/MyArticles.js";
 import axios from "axios";
 import "../styles/home.css";
 import { Grid } from "@material-ui/core";
+import { ClipLoader } from "react-spinners";
 
 export default class Home extends React.Component {
   state = {
@@ -49,7 +50,7 @@ export default class Home extends React.Component {
           "Not correctly Logged in."
         ) : this.state.status === "Loading" ? (
           <React.Fragment>
-            <h4>Loading...</h4>
+            <ClipLoader />
           </React.Fragment>
         ) : (
           <div>
@@ -66,7 +67,7 @@ export default class Home extends React.Component {
               />
             ) : (
               <p className="fw-light">
-                No image provided :( or Error Loading Image
+                <ClipLoader />
               </p>
             )}
             <Grid container alignItems="flex-start" justify="space-evenly">
