@@ -84,7 +84,7 @@ export default class NavBar extends React.Component {
                   to="/createContent"
                 >
                   <Button onClick={this.handleUpdateUrl} color="inherit">
-                    Create an Article
+                    Create
                   </Button>
                 </NavLink>
 

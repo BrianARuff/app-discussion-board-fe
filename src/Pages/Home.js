@@ -66,9 +66,9 @@ export default class Home extends React.Component {
                 alt={this.state}
               />
             ) : (
-              <p className="fw-light">
+              <div className="fw-light">
                 <ClipLoader />
-              </p>
+              </div>
             )}
             <Grid container alignItems="flex-start" justify="space-evenly">
               <Grid item>

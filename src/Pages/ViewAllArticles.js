@@ -3,6 +3,7 @@ import axios from "axios";
 import { Route } from "react-router-dom";
 import uuid from "uuid/v4";
 import { ClipLoader } from "react-spinners";
+import Button from "@material-ui/core/Button";
 
 // lazyload
 const Article = lazy(() => import("../Components/Article"));
@@ -10,7 +11,8 @@ const Article = lazy(() => import("../Components/Article"));
 export default class ViewAllArticles extends React.Component {
   state = {
     articles: [],
-    user: {}
+    user: {},
+    paginationOffset: 0
   };
 
   // validate account...
@@ -21,9 +23,10 @@ export default class ViewAllArticles extends React.Component {
       const bearerToken = payload.split(".")[1];
       const payloadData = JSON.parse(atob(bearerToken));
       this.setState({ user: payloadData });
-
       axios
-        .get("https://suicide-watch-backend.herokuapp.com/articles/")
+        .get(
+          `https://suicide-watch-backend.herokuapp.com/articles?limit=100&offset=${this.state.paginationOffset}`
+        )
         .then(res => {
           this.setState({ articles: res.data.articles });
         })
@@ -38,13 +41,25 @@ export default class ViewAllArticles extends React.Component {
 
   render() {
     return (
-      <div style={{ padding: "20px 0" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px 0",
+          flexDirection: "column"
+        }}
+      >
         <Suspense fallback={<ClipLoader />}>
           {this.state.articles.map(article => {
             return (
               <Route
                 key={uuid()}
-                render={props => <Article article={article} {...props} />}
+                render={props => (
+                  <Suspense fallback={""}>
+                    <Article article={article} {...props} />
+                  </Suspense>
+                )}
               />
             );
           })}
