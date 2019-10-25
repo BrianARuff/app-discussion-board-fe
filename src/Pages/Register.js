@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Link, BrowserRouter } from "react-router-dom";
 import {
   InputLabel,
   FormHelperText,
@@ -189,10 +188,7 @@ export default class Register extends React.Component {
               )}
             </Button>
             <FormHelperText>
-              Already registered? Please go{" "}
-              <BrowserRouter>
-                <Link to="/login">Login</Link> to login.
-              </BrowserRouter>
+              Already registered? Please go <a href="/login">Login</a> to login.
             </FormHelperText>
           </FormControl>
         </form>

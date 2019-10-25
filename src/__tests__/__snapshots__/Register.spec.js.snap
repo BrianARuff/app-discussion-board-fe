@@ -242,11 +242,9 @@ exports[`test register component for snapshot testing 1`] = `
       <p
         className="MuiFormHelperText-root"
       >
-        Already registered? Please go
-         
+        Already registered? Please go 
         <a
           href="/login"
-          onClick={[Function]}
         >
           Login
         </a>

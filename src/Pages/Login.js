@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Link, BrowserRouter } from "react-router-dom";
 import {
   InputLabel,
   FormHelperText,
@@ -122,10 +121,8 @@ export default class Login extends React.Component {
             </Button>
             <FormHelperText>
               Don't have an account? Head over to the{" "}
-              <BrowserRouter>
-                <Link to="/register">Register</Link>
-              </BrowserRouter>{" "}
-              page to register your new account!!
+              <a href="/register">Register</a> page to register your new
+              account!!
             </FormHelperText>
           </FormControl>
         </form>

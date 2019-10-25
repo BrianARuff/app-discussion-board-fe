@@ -172,12 +172,10 @@ exports[`test Login component Login snapshot from json 1`] = `
          
         <a
           href="/register"
-          onClick={[Function]}
         >
           Register
         </a>
-         
-        page to register your new account!!
+         page to register your new account!!
       </p>
     </div>
   </form>
