@@ -37,7 +37,7 @@ export default class NavBar extends React.Component {
     Cookie.remove("token");
     localStorage.removeItem("username");
     localStorage.removeItem("image");
-    window.location.href = window.location.origin;
+    window.location.href = window.location.origin + "/logout";
   };
 
   render() {
