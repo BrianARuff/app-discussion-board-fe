@@ -36,8 +36,6 @@ export default class Article extends React.Component {
       window.history.scrollRestoration = "manual";
     }
 
-    this.props.article.user_id = Number(this.props.article.user_id);
-
     window.addEventListener(
       "resize",
       this.setState({ width: window.innerWidth })

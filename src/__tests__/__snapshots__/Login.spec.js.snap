@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Login component Login snapshot from json 1`] = `
+<div
+  className="login-form-container"
+>
+  <h1
+    className="hide"
+  >
+    Login Page
+  </h1>
+  <h2
+    className="fw-bold"
+  >
+    Login Below
+  </h2>
+  <h4
+    className="fw-light"
+  >
+    Login with either your email or username in the appropriate field
+  </h4>
+  <form
+    className="login-form-flex"
+    onKeyDown={[Function]}
+  >
+    <div
+      className="MuiFormControl-root MuiFormControl-fullWidth"
+    >
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
+        data-shrink={false}
+      >
+        Username
+        <span
+          className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+        >
+           
+          *
+        </span>
+      </label>
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          autoComplete="true"
+          className="MuiInputBase-input MuiInput-input"
+          disabled={false}
+          name="name"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          required={true}
+          type="text"
+        />
+      </div>
+      <p
+        className="MuiFormHelperText-root Mui-required"
+      >
+        Fill out either your username
+      </p>
+    </div>
+    <div
+      className="MuiFormControl-root MuiFormControl-fullWidth"
+    >
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
+        data-shrink={false}
+      >
+        Email
+        <span
+          className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+        >
+           
+          *
+        </span>
+      </label>
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          autoComplete="true"
+          className="MuiInputBase-input MuiInput-input"
+          disabled={false}
+          name="email"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          required={true}
+          type="email"
+        />
+      </div>
+      <p
+        className="MuiFormHelperText-root Mui-required"
+      >
+        Fill out either your email
+      </p>
+    </div>
+    <div
+      className="MuiFormControl-root MuiFormControl-fullWidth"
+    >
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated Mui-required Mui-required"
+        data-shrink={false}
+      >
+        Password
+        <span
+          className="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+        >
+           
+          *
+        </span>
+      </label>
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
+        onClick={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          autoComplete="true"
+          className="MuiInputBase-input MuiInput-input"
+          disabled={false}
+          name="password"
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          required={true}
+          type="password"
+        />
+      </div>
+      <p
+        className="MuiFormHelperText-root Mui-required"
+      >
+        Please enter your password
+      </p>
+    </div>
+    <br />
+    <div
+      className="MuiFormControl-root MuiFormControl-fullWidth"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-fullWidth"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          Login
+        </span>
+      </button>
+      <p
+        className="MuiFormHelperText-root"
+      >
+        Don't have an account? Head over to the
+         
+        <a
+          href="/register"
+          onClick={[Function]}
+        >
+          Register
+        </a>
+         
+        page to register your new account!!
+      </p>
+    </div>
+  </form>
+</div>
+`;

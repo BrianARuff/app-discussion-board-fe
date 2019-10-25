@@ -17,8 +17,8 @@ export default class CreateComment extends React.Component {
       .post(`https://suicide-watch-backend.herokuapp.com/comments`, {
         author: this.props.user.name,
         text: this.state.text,
-        author_id: Number(this.props.user.id),
-        article_id: Number(this.props.article.id)
+        author_id: Number(this.props.user.id), // convert to number for db
+        article_id: Number(this.props.article.id) // convert to number for db
       })
       .then(res => {
         document.location.reload();

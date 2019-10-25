@@ -6,6 +6,7 @@ import axios from "axios";
 import "../styles/home.css";
 import { Grid } from "@material-ui/core";
 import { ClipLoader } from "react-spinners";
+import DefaultImage from "../Images/defaultAvatar.png";
 
 export default class Home extends React.Component {
   state = {
@@ -20,7 +21,7 @@ export default class Home extends React.Component {
     const payload = (await document.cookie.split("=")[1]) || "";
     if (payload.length > 0) {
       const bearerToken = payload.split(".")[1];
-      const payloadData = JSON.parse(atob(bearerToken));
+      const payloadData = JSON.parse(atob(bearerToken || ""));
       this.setState({ status: "Loaded", isValid: true, user: payloadData });
     } else {
       this.setState({ status: "", isValid: false, user: {} });
@@ -34,7 +35,10 @@ export default class Home extends React.Component {
       if (!user) {
         this.setState({ status: "Error Loading Image" });
       } else {
-        this.setState({ image: user.data.image, id: user.data.id });
+        this.setState({
+          image: user.data.image || DefaultImage,
+          id: user.data.id
+        });
       }
     } catch (error) {
       this.setState({ status: "Error Loading Image" });
