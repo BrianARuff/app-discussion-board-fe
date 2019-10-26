@@ -137,9 +137,7 @@ export default class Register extends React.Component {
               type="date"
               onChange={this.handleInputChange}
             />
-            <FormHelperText>
-              Please enter a valid email address that you can keep up with
-            </FormHelperText>
+            <FormHelperText>Please enter your date of birth.</FormHelperText>
           </FormControl>
 
           <FormControl fullWidth>
