@@ -138,6 +138,7 @@ export default class Article extends React.Component {
                 >
                   <ReactMarkdown
                     source={this.props.article.text.replace(/<br ?\/?>/g, "\n")}
+                    style={{ wordBreak: "break-word" }}
                   />
                 </Typography>
               </CardContent>

@@ -210,3 +210,7 @@ div,
 p {
   overflow-wrap: break-word !important;
 }
+
+#root > div > div.article-page-container > div.fw-light > p {
+  word-break: break-all;
+}
