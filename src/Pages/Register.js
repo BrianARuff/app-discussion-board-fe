@@ -176,7 +176,7 @@ export default class Register extends React.Component {
             >
               {this.state.status === "Registering" ? (
                 <Fragment>
-                  <span style={{ position: "relative", top: 0, right: 100 }}>
+                  <span style={{ position: "relative", top: 0, right: 20 }}>
                     <ClipLoader />
                   </span>
                   {this.state.status}
