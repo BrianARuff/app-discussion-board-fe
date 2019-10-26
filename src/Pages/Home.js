@@ -79,13 +79,15 @@ export default class Home extends React.Component {
                 <span className="fw-bold"></span> {this.state.user.description}
               </Grid>
             </Grid>
+            <br />
+            <br />
+            <Route
+              render={props => (
+                <MyArticles image={this.state.image} {...props} />
+              )}
+            />
           </div>
         )}
-        <br />
-        <br />
-        <Route
-          render={props => <MyArticles image={this.state.image} {...props} />}
-        />
       </div>
     );
   }
