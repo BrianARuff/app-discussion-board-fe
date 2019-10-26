@@ -103,7 +103,7 @@ export default class Article extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "100%" }} className="article-list-container">
+      <div className="article-list-container">
         <Card>
           <CardActionArea onClick={this.goToArticlePage}>
             <div
