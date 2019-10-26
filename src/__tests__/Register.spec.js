@@ -1,9 +1,8 @@
 import React from "react";
-import { create, act } from "react-test-renderer";
+import { create } from "react-test-renderer";
 import Register from "../Pages/Register.js";
 import ReactDOM from "react-dom";
 import { act as domAct } from "react-dom/test-utils";
-import axios from "axios";
 
 let container;
 
