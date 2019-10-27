@@ -46,9 +46,9 @@ export default class ViewAllArticles extends React.Component {
           alignItems: "center",
           flexDirection: "column",
           flexWrap: "nowrap",
-          width: "100%",
           maxWidth: "600px",
-          margin: "0 auto"
+          margin: "0 auto",
+          padding: "0 20px"
         }}
       >
         <Suspense fallback={<ClipLoader />}>
