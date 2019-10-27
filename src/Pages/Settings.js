@@ -7,16 +7,11 @@ const Settings = props => {
   const [newPasswordValid, setNewPasswordValid] = useState("");
   const [user, setUser] = useState({});
 
-  const handleSetPassword = e => {
-    setPassword({ [e.target.name]: e.target.value });
-  };
-
-  const handleSetNewPassword = e => {
-    setNewPassword({ [e.target.name]: e.target.value });
-  };
-
-  const handleSetNewPasswordValid = e => {
-    setNewPasswordValid({ [e.target.name]: e.target.value });
+  const handleInput = (e, cb) => {
+    cb(e.target.value);
+    console.log("psw => ", password);
+    console.log("psw2 => ", newPassword);
+    console.log("psw3 => ", newPasswordValid);
   };
 
   useEffect(() => {
@@ -25,9 +20,13 @@ const Settings = props => {
       const bearerToken = payload.split(".")[1];
       const payloadData = JSON.parse(atob(bearerToken || ""));
       setUser(payloadData);
-      console.log(payloadData);
     }
   }, []);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(password, newPassword, newPasswordValid);
+  };
 
   return (
     <div>
@@ -40,7 +39,7 @@ const Settings = props => {
         <div>
           <label htmlFor="password">Old Password</label>
           <input
-            onChange={handleSetPassword}
+            onChange={e => handleInput(e, setPassword)}
             defaultValue={password}
             name="password"
             type="password"
@@ -50,7 +49,7 @@ const Settings = props => {
         <div>
           <label htmlFor="newPassword">New Password</label>
           <input
-            onChange={handleSetNewPassword}
+            onChange={e => handleInput(e, setNewPassword)}
             name="newPassword"
             type="password"
             autoComplete="true"
@@ -59,12 +58,13 @@ const Settings = props => {
         <div>
           <label htmlFor="newPasswordValid">Enter New Password Again</label>
           <input
-            onChange={handleSetNewPasswordValid}
+            onChange={e => handleInput(e, setNewPasswordValid)}
             name="newPasswordValid"
             type="password"
             autoComplete="true"
           />
         </div>
+        <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );
