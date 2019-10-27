@@ -6,16 +6,16 @@ const Portal = props => {
 
   // mounting
   useEffect(() => {
-    setNode(document.getElementById(`${props.id}`));
-  }, [props]);
+    setNode(document.getElementById("error"));
+  }, []);
 
   // unmount
   useEffect(
     () =>
       document
-        .getElementById("modal")
+        .getElementById("error")
         .childNodes.forEach(node => node.removeChild),
-    []
+    [props]
   );
 
   return ReactDOM.createPortal(

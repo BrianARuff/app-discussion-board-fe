@@ -11,6 +11,7 @@ import CreateContent from "./Pages/CreateContent";
 import ViewAllArticles from "./Pages/ViewAllArticles";
 import PageNotFound from "./Pages/PageNotFound";
 import ArticlePage from "./Pages/ArticlePage";
+import Settings from "./Pages/Settings";
 
 // components
 import NavBar from "./Components/NavBar.js";
@@ -48,6 +49,11 @@ export default class App extends React.Component {
               exact
               path="/article/:id"
               render={props => <ArticlePage {...props} />}
+            />
+            <Route
+              exact
+              path="/settings"
+              render={props => <Settings {...props} />}
             />
             <Route path="*" render={props => <PageNotFound {...props} />} />
           </Switch>

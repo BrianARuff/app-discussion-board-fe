@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorBoundary from "../Components/ErrorBoundary";
 
 const PageNotFound = props => {
   return (
@@ -9,4 +10,10 @@ const PageNotFound = props => {
   );
 };
 
-export default PageNotFound;
+export default function PageNotFoundWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <PageNotFound {...props} />
+    </ErrorBoundary>
+  );
+}

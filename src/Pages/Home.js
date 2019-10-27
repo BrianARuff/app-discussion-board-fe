@@ -59,6 +59,9 @@ export default class Home extends React.Component {
         ) : (
           <div>
             <h1 className="hide">Home Page</h1>
+            <p>
+              <a href="/settings">Account Settings</a>
+            </p>
             {this.state.image ? (
               <img
                 style={{
