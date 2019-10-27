@@ -48,7 +48,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div className="pd-2">
+      <div className="pd-2" style={{ maxWidth: "600px", margin: "0 auto" }}>
         {!this.state.isValid ? (
           <Route render={props => <Login {...props} />} /> ||
           "Not correctly Logged in."
