@@ -66,7 +66,7 @@ export default class Home extends React.Component {
                 id={"coffee-wrapper-id" || null}
                 className={"coffee-wrapper-class" || null} // optional
                 labelText={""} // optional
-              />
+              />{" "}
               <a href="/settings">Account Settings</a>
             </p>
             {this.state.image ? (
