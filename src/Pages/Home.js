@@ -7,6 +7,7 @@ import "../styles/home.css";
 import { Grid } from "@material-ui/core";
 import { ClipLoader } from "react-spinners";
 import DefaultImage from "../Images/defaultAvatar.png";
+import CoffeeIcon from "../Components/CoffeeIcon";
 
 export default class Home extends React.Component {
   state = {
@@ -60,6 +61,12 @@ export default class Home extends React.Component {
           <div>
             <h1 className="hide">Home Page</h1>
             <p>
+              <CoffeeIcon
+                styles={{ color: "maroon" }} // optional
+                id={"coffee-wrapper-id" || null}
+                className={"coffee-wrapper-class" || null} // optional
+                labelText={""} // optional
+              />
               <a href="/settings">Account Settings</a>
             </p>
             {this.state.image ? (

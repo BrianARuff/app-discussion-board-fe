@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import bcrypt from "bcryptjs";
+import Axios from "axios";
 
 const Settings = props => {
   const [password, setPassword] = useState("");
@@ -9,9 +9,10 @@ const Settings = props => {
 
   const handleInput = (e, cb) => {
     cb(e.target.value);
-    console.log("psw => ", password);
-    console.log("psw2 => ", newPassword);
-    console.log("psw3 => ", newPasswordValid);
+  };
+
+  const handleSubmitUpdateAccoutSettings = e => {
+    Axios.patch("");
   };
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const Settings = props => {
   return (
     <div>
       <h4>Account Settings</h4>
+      <p style={{ color: "red" }}>In Development :(</p>
       <div>
         <label htmlFor="username">Username</label>
         <p>{props.username}</p>
