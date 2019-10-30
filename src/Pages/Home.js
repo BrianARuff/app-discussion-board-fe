@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Login from "./Login.js";
 import MyArticles from "../Components/MyArticles.js";
@@ -8,8 +8,9 @@ import { Grid } from "@material-ui/core";
 import { ClipLoader } from "react-spinners";
 import DefaultImage from "../Images/defaultAvatar.png";
 import CoffeeIcon from "../Components/CoffeeIcon";
+import ErrorBoundary from "../Components/ErrorBoundary";
 
-export default class Home extends React.Component {
+class Home extends Component {
   state = {
     status: "Loading",
     user: {},
@@ -80,9 +81,7 @@ export default class Home extends React.Component {
                 alt={this.state}
               />
             ) : (
-              <div className="fw-light">
-                <ClipLoader />
-              </div>
+              <ClipLoader />
             )}
             <Grid container alignItems="flex-start" justify="space-evenly">
               <Grid item>
@@ -101,4 +100,12 @@ export default class Home extends React.Component {
       </div>
     );
   }
+}
+
+export default function HomeWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Home {...props} />
+    </ErrorBoundary>
+  );
 }

@@ -15,8 +15,9 @@ import Settings from "./Pages/Settings";
 
 // components
 import NavBar from "./Components/NavBar.js";
+import ErrorBoundary from "./Components/ErrorBoundary";
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
@@ -61,4 +62,12 @@ export default class App extends React.Component {
       </div>
     );
   }
+}
+
+export default function AppWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <App {...props} />
+    </ErrorBoundary>
+  );
 }

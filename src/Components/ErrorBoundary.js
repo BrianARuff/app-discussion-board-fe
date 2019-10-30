@@ -1,42 +1,56 @@
-import React, { lazy, Suspense } from "react";
-import { ClipLoader } from "react-spinners";
+import React from "react";
 
-const Portal = lazy(() => import("./Portal"));
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null, errorInfo: null };
+  }
 
-export default class ErrorBoundary extends React.Component {
-  state = {
-    hasError: false,
-    info: ""
-  };
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error,
+      errorInfo: errorInfo
+    });
   }
-  componentDidCatch(err, info) {
-    console.error(err, info);
-    this.setState({ info });
-  }
+
   render() {
-    if (this.state.hasError) {
+    if (this.state.errorInfo) {
       return (
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            alignContent: "center",
             alignItems: "center",
-            background: "rgba(0,0,0,0.3)",
-            zIndex: "1000"
+            flexDirection: "column",
+            minHeight: "100vh"
           }}
         >
-          <Suspense fallback={ClipLoader}>
-            <Portal id="error">
-              <h4>Error Found</h4>
-              <p>{this.state.info}</p>
-            </Portal>
-          </Suspense>
+          <h2>Something went wrong.</h2>
+          <details style={{ whiteSpace: "pre-wrap" }}>
+            {this.state.error && this.state.error.toString()}
+            <br />
+            {this.state.errorInfo.componentStack}
+          </details>
+          <button
+            style={{
+              width: "300px",
+              height: "30px",
+              fontSize: "16px",
+              fontWeight: "bold",
+              border: "1px solid black",
+              borderRadius: "3px",
+              margin: "20px 0",
+              cursor: "pointer"
+            }}
+            onClick={e => window.history.back()}
+          >
+            Go Back a Page
+          </button>
         </div>
       );
     }
     return this.props.children;
   }
 }
+
+export default ErrorBoundary;
