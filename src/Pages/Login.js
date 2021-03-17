@@ -27,7 +27,7 @@ export default class Login extends React.Component {
     const { name, email, password } = this.state;
     this.setState({ status: "Validating Credentials" });
     axios
-      .post("https://suicide-watch-backend.herokuapp.com/auth/login", {
+      .post("https://discussion-site.herokuapp.com/auth/login", {
         name,
         email,
         password

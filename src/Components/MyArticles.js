@@ -28,7 +28,7 @@ export default class MyArticles extends React.Component {
 
     axios
       .get(
-        `https://suicide-watch-backend.herokuapp.com/users/articles/${this.state.user.id}`
+        `https://discussion-site.herokuapp.com/users/articles/${this.state.user.id}`
       )
       .then(res => {
         this.setState({ articles: res.data.articles });

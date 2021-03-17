@@ -16,7 +16,7 @@ export default class Comments extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://suicide-watch-backend.herokuapp.com/comments/article/${this.props.article.id}`
+        `https://discussion-site.herokuapp.com/comments/article/${this.props.article.id}`
       )
       .then(res => {
         this.setState({

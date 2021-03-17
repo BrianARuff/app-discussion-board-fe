@@ -14,7 +14,7 @@ export default class CreateComment extends React.Component {
 
   handleSubmittingComment = () => {
     axios
-      .post(`https://suicide-watch-backend.herokuapp.com/comments`, {
+      .post(`https://discussion-site.herokuapp.com/comments`, {
         author: this.props.user.name,
         text: this.state.text,
         author_id: Number(this.props.user.id), // convert to number for db

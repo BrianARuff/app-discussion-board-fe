@@ -29,13 +29,13 @@ export default class ArticlePage extends React.Component {
       const articleNumber = window.location.href.split("/")[4];
       axios
         .get(
-          `https://suicide-watch-backend.herokuapp.com/articles/${articleNumber}`
+          `https://discussion-site.herokuapp.com/articles/${articleNumber}`
         )
         .then(res => {
           this.setState({ article: res.data.article });
           axios
             .get(
-              `https://suicide-watch-backend.herokuapp.com/users/${res.data.article.user_id}`
+              `https://discussion-site.herokuapp.com/users/${res.data.article.user_id}`
             )
             .then(articlePoster => {
               this.setState({

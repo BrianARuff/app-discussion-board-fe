@@ -23,7 +23,7 @@ export default class ViewAllArticles extends React.Component {
       const payloadData = JSON.parse(atob(bearerToken));
       axios
         .get(
-          `https://suicide-watch-backend.herokuapp.com/articles?limit=100&offset=${this.state.paginationOffset}`
+          `https://discussion-site.herokuapp.com//articles?limit=100&offset=${this.state.paginationOffset}`
         )
         .then(res => {
           this.setState({ articles: res.data.articles, user: payloadData });

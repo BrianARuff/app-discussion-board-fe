@@ -22,7 +22,7 @@ const Settings = props => {
     e.preventDefault();
     axios
       .patch(
-        "https://suicide-watch-backend.herokuapp.com/users/update_account",
+        "https://discussion-site.herokuapp.com/users/update_account",
         {
           id: user.id,
           oldPassword: password,

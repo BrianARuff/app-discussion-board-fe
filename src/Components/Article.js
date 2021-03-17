@@ -43,7 +43,7 @@ export default class Article extends React.Component {
 
     axios
       .get(
-        `https://suicide-watch-backend.herokuapp.com/users/${this.props.article.user_id}`
+        `https://discussion-site.herokuapp.com/users/${this.props.article.user_id}`
       )
       .then(res => {
         this.setState({ image: res.data.image, id: res.data.id });
@@ -68,7 +68,7 @@ export default class Article extends React.Component {
   handleDislike = e => {
     axios
       .patch(
-        `https://suicide-watch-backend.herokuapp.com/articles/${this.props.article.id}/dislike`
+        `https://discussion-site.herokuapp.com/articles/${this.props.article.id}/dislike`
       )
       .then(res => {
         let position = document.querySelector("#root").getBoundingClientRect();
@@ -84,7 +84,7 @@ export default class Article extends React.Component {
   handleLike = e => {
     axios
       .patch(
-        `https://suicide-watch-backend.herokuapp.com/articles/${this.props.article.id}/like`
+        `https://discussion-site.herokuapp.com/articles/${this.props.article.id}/like`
       )
       .then(res => {
         let position = document.querySelector("#root").getBoundingClientRect();

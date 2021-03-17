@@ -31,7 +31,7 @@ class Home extends Component {
 
     try {
       const user = await axios.get(
-        `https://suicide-watch-backend.herokuapp.com/users/${this.state.user.id}`
+        `https://discussion-site.herokuapp.com/users/${this.state.user.id}`
       );
 
       if (!user) {

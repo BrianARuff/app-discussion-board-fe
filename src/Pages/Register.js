@@ -36,7 +36,7 @@ export default class Register extends React.Component {
     this.setState({ status: "Registering" });
     axios
       .post(
-        "https://suicide-watch-backend.herokuapp.com/auth/register",
+        "https://discussion-site.herokuapp.com/auth/register",
         this.state
       )
       .then(res => {
