@@ -57,7 +57,8 @@ export default class Register extends React.Component {
           {
             status: "Error registering account... Try again.",
             hasError: true,
-            errorMessage: err.response.data.error || "Invalid Credentials"
+            errMessage: err
+            // errorMessage: err.response.data.error || "Invalid Credentials"
           },
           () => console.log({ ...err })
         );
